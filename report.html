@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureFi - Reports</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- MÀN HÌNH CHỜ (LOADING) -->
+    <div id="loading-screen" class="container" style="text-align: center; margin-top: 150px;">
+        <i data-lucide="loader" class="text-cyan" style="animation: spin 2s linear infinite; width: 40px; height: 40px; margin-bottom: 15px;"></i>
+        <h2 class="text-cyan terminal-text">> SYSTEM_INITIALIZING...</h2>
+        <p style="color: var(--text-muted); font-family: var(--font-mono);">Fetching analytics data</p>
+    </div>
+
+    <!-- MÀN HÌNH BÁO CÁO -->
+    <div id="app-section" class="container" style="display: none;">
+        <header>
+            <div class="logo">
+                <i data-lucide="cpu"></i> <span>SECURE_FI</span>
+            </div>
+            <nav class="top-nav">
+                <a href="index.html" class="btn outline" style="text-decoration:none;">[ HOME_NODE ]</a>
+                <a href="report.html" class="btn outline active" style="text-decoration:none;">[ REPORTS ]</a>
+            </nav>
+            <div class="user-info">
+                <span id="userEmail" class="terminal-text"></span>
+                <button id="logoutBtn" class="btn small outline"><i data-lucide="power"></i> LOGOUT</button>
+            </div>
+        </header>
+
+        <!-- BỘ LỌC NGÀY THÁNG -->
+        <div class="filter-bar cyber-border">
+            <div class="filter-group">
+                <label>> QUICK_FILTER</label>
+                <select id="timeFilter">
+                    <option value="month" selected>Tháng này</option>
+                    <option value="week">Tuần này</option>
+                    <option value="year">Năm nay</option>
+                    <option value="all">Tất cả thời gian</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>> FROM_DATE (Từ ngày)</label>
+                <input type="date" id="startDate">
+            </div>
+
+            <div class="filter-group">
+                <label>> TO_DATE (Đến ngày)</label>
+                <input type="date" id="endDate">
+            </div>
+
+            <button id="customFilterBtn" class="btn primary"><i data-lucide="search"></i> SEARCH</button>
+        </div>
+
+        <div class="dashboard-cards" style="margin-top: 20px;">
+            <div class="card income cyber-border">
+                <h3><i data-lucide="arrow-down-circle" class="glow-cyan"></i> [ FILTERED_INCOME ]</h3>
+                <h2 id="repIncome" class="text-cyan">0 ₫</h2>
+            </div>
+            <div class="card expense cyber-border">
+                <h3><i data-lucide="alert-triangle" class="glow-red"></i> [ FILTERED_EXPENSE ]</h3>
+                <h2 id="repExpense" class="text-red">0 ₫</h2>
+            </div>
+        </div>
+
+        <div class="chart-section cyber-border" style="margin-top: 20px;">
+            <h3>[ EXPENSE_ANALYSIS_CHART ]</h3>
+            <div class="canvas-wrapper" style="height: 350px;">
+                <canvas id="expenseChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="report.js"></script>
+</body>
+</html>

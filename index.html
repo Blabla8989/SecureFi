@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureFi - Cyber Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- MÀN HÌNH CHỜ (LOADING) -->
+    <div id="loading-screen" class="container" style="text-align: center; margin-top: 150px;">
+        <i data-lucide="loader" class="text-cyan" style="animation: spin 2s linear infinite; width: 40px; height: 40px; margin-bottom: 15px;"></i>
+        <h2 class="text-cyan terminal-text">> SYSTEM_INITIALIZING...</h2>
+        <p style="color: var(--text-muted); font-family: var(--font-mono);">Verifying secure connection</p>
+    </div>
+
+    <!-- KHU VỰC XÁC THỰC (Ẩn lúc đầu) -->
+    <div id="auth-section" class="container" style="display: none;">
+        
+        <!-- BOX 1: ĐĂNG NHẬP -->
+        <div id="login-box" class="auth-box cyber-border">
+            <h2><i data-lucide="shield-check"></i> SECURE_FI</h2>
+            <p class="terminal-text">> System_Login required...</p>
+            <input type="email" id="loginEmail" placeholder="USER_EMAIL">
+            <input type="password" id="loginPass" placeholder="PASSWORD_KEY">
+            <button id="loginBtn" class="btn primary w-100">[ EXECUTE_LOGIN ]</button>
+            <p id="loginMsg" class="msg"></p>
+            
+            <p class="terminal-text" style="margin-top: 20px; font-size: 0.85rem;">
+                > Chưa có mã định danh? 
+                <span id="showRegister" class="text-cyan" style="cursor: pointer; font-weight: bold; text-decoration: underline;">[ TẠO TÀI KHOẢN ]</span>
+            </p>
+        </div>
+
+        <!-- BOX 2: ĐĂNG KÝ (Mặc định ẩn) -->
+        <div id="register-box" class="auth-box cyber-border" style="display: none;">
+            <h2><i data-lucide="user-plus"></i> NEW_NODE</h2>
+            <p class="terminal-text">> Khởi tạo tài khoản mới...</p>
+            <input type="email" id="regEmail" placeholder="USER_EMAIL">
+            <input type="password" id="regPass" placeholder="PASSWORD (Tối thiểu 6 ký tự)">
+            <input type="password" id="regPassConfirm" placeholder="CONFIRM_PASSWORD">
+            <button id="registerBtn" class="btn outline w-100">[ EXECUTE_REGISTER ]</button>
+            <p id="regMsg" class="msg"></p>
+            
+            <p class="terminal-text" style="margin-top: 20px; font-size: 0.85rem;">
+                > Đã có tài khoản? 
+                <span id="showLogin" class="text-cyan" style="cursor: pointer; font-weight: bold; text-decoration: underline;">[ QUAY LẠI ĐĂNG NHẬP ]</span>
+            </p>
+        </div>
+
+    </div>
+
+    <!-- MÀN HÌNH TRANG CHỦ -->
+    <div id="app-section" class="container" style="display: none;">
+        <header>
+            <div class="logo">
+                <i data-lucide="cpu"></i> <span>SECURE_FI</span>
+            </div>
+            <nav class="top-nav">
+                <a href="index.html" class="btn outline active" style="text-decoration:none;">[ HOME_NODE ]</a>
+                <a href="report.html" class="btn outline" style="text-decoration:none;">[ REPORTS ]</a>
+            </nav>
+            <div class="user-info">
+                <span id="userEmail" class="terminal-text"></span>
+                <button id="logoutBtn" class="btn small outline"><i data-lucide="power"></i> LOGOUT</button>
+            </div>
+        </header>
+
+        <div class="dashboard-cards">
+            <div class="card balance cyber-border">
+                <h3>[ TOTAL_BALANCE ]</h3>
+                <h2 id="totalBalance">0 ₫</h2>
+            </div>
+            <div class="card income cyber-border">
+                <h3><i data-lucide="arrow-down-circle" class="glow-cyan"></i> [ ALL_INCOME ]</h3>
+                <h2 id="totalIncome" class="text-cyan">0 ₫</h2>
+            </div>
+            <div class="card expense cyber-border">
+                <h3><i data-lucide="alert-triangle" class="glow-red"></i> [ ALL_EXPENSE ]</h3>
+                <h2 id="totalExpense" class="text-red">0 ₫</h2>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="left-col">
+                <div class="form-section cyber-border">
+                    <h3>[ NEW_TRANSACTION ]</h3>
+                    <select id="transType">
+                        <option value="expense">[-] EXPENSE (Trừ tiền)</option>
+                        <option value="income">[+] INCOME (Cộng tiền)</option>
+                    </select>
+                    <input type="number" id="transAmount" placeholder="AMOUNT (VNĐ)..." required>
+                    <input type="text" id="transCategory" placeholder="CATEGORY (Ăn uống, Xăng...)" required>
+                    <input type="text" id="transNote" placeholder="NOTE (Mô tả chi tiết)...">
+                    <button id="addTransBtn" class="btn primary w-100"><i data-lucide="database"></i> SAVE_RECORD</button>
+                </div>
+            </div>
+
+            <div class="list-section cyber-border">
+                <h3>[ SYSTEM_LOGS ]</h3>
+                <div id="transactionList" class="transaction-list">
+                    <p style="text-align:center; color: var(--text-muted);">Awaiting data transmission...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
