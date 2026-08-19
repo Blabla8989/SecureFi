@@ -36,4 +36,4 @@ To run this project locally for development or testing:
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/your-username/SecureFi.git](https://github.com/your-username/SecureFi.git)
+   git clone [https://github.com/Blabla8989/SecureFi.git](https://github.com/Blabla8989/SecureFi.git)
